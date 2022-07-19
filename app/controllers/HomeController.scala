@@ -19,6 +19,7 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
    * a path of `/`.
    */
   def index() = Action { implicit request: Request[AnyContent] =>
-    Ok(views.html.index())
+    val books: List[String] = List("book1", "book2", "book3")
+    Ok(views.html.index(books))
   }
 }

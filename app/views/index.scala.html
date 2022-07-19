@@ -1,5 +1,8 @@
-@()
+@(books: Seq[String])
 
-@main("Welcome to Play") {
-  <h1>Welcome to Play!</h1>
+@main("Welcome to the Library") {
+  <h1>Welcome to the Library!</h1>
+  @for(book <- books) {
+    <li>@book</li>
+  }
 }
