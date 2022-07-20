@@ -20,8 +20,8 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
     postValues.map { args =>
       val username = args("username").head
       val password = args("password").head
-      Ok(s"$username logged in with $password.")
-    }.getOrElse(Ok("Login Failed"))
+      Redirect(routes.HomeController.index)
+    }.getOrElse(Redirect(routes.HomeController.login))
   }
 
   def index(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
