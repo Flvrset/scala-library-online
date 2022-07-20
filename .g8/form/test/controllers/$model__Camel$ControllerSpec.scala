@@ -29,7 +29,7 @@ class $model;format="Camel"$ControllerSpec extends PlaySpec with GuiceOneAppPerT
 
   "$model;format="Camel"$Controller GET" should {
 
-    "render the index page from a new instance of controller" in {
+    "render the index page from loginPage new instance of controller" in {
       val controller = new $model;format="Camel"$Controller(new StubComponents())
       val request = FakeRequest().withCSRFToken
       val home = controller.$model;format="camel"$Get().apply(request)

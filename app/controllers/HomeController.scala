@@ -11,13 +11,19 @@ import play.api.mvc._
 @Singleton
 class HomeController @Inject()(val controllerComponents: ControllerComponents) extends BaseController {
 
-  /**
-   * Create an Action to render an HTML page.
-   *
-   * The configuration in the `routes` file means that this method
-   * will be called when the application receives a `GET` request with
-   * a path of `/`.
-   */
+  def login: Action[AnyContent] = Action { _ =>
+    Ok(views.html.loginPage())
+  }
+
+  def validateLogin: Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
+    val postValues = request.body.asFormUrlEncoded
+    postValues.map { args =>
+      val username = args("username").head
+      val password = args("password").head
+      Ok(s"$username logged in with $password.")
+    }.getOrElse(Ok("Login Failed"))
+  }
+
   def index(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
     val books: List[String] = List("book1", "book2", "book3")
     Ok(views.html.index(books))
